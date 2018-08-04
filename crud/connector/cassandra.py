@@ -14,7 +14,7 @@ from cassandra.cluster import Cluster, default_lbp_factory
 from cassandra.policies import RetryPolicy, ConstantReconnectionPolicy
 from cassandra.query import ordered_dict_factory
 
-from statement.cql import (
+from crud.statement.cql import (
     select_query,
     insert_query,
     delete_query,

@@ -8,7 +8,7 @@
 
 import datetime
 
-from utils import quote_identifier, parse_local_time
+from crud.utils import quote_identifier, parse_local_time
 
 
 class BaseClause:

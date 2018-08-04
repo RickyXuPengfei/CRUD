@@ -6,16 +6,18 @@
 
 '''
 
-import pymysql
-import logging
 import contextlib
-from pymysql.cursors import DictCursorMixin, Cursor
+import logging
 from collections import OrderedDict
+
+from pymysql.cursors import DictCursorMixin, Cursor
 
 logger = logging.getLogger(__name__)
 
+
 class OrderedDictCursor(DictCursorMixin, Cursor):
     dict_type = OrderedDict
+
 
 class DBApiConnector:
     def __init__(self, host, port, database, row_type=OrderedDict, user=None, password=None, *args, **kwargs):
@@ -26,8 +28,7 @@ class DBApiConnector:
         self.database = database
         self.row_type = row_type
 
-
-    def connect(self,*args,**kwargs):
+    def connect(self, *args, **kwargs):
         return NotImplementedError
 
     @contextlib.contextmanager
@@ -63,7 +64,7 @@ class DBApiConnector:
                 else:
                     cursor.executemany(q)
 
-    def fetchall(self, query, parameters = None):
+    def fetchall(self, query, parameters=None):
         with self.cursor() as cursor:
             if parameters is not None:
                 cursor.execute(query, parameters)
@@ -72,7 +73,7 @@ class DBApiConnector:
             rows = cursor.fetchall()
         return rows
 
-    def fetchone(self,query,parameters=None):
+    def fetchone(self, query, parameters=None):
         with self.cursor() as cursor:
             if parameters is not None:
                 cursor.execute(query, parameters)
@@ -80,9 +81,3 @@ class DBApiConnector:
                 cursor.execute(query)
             row = cursor.fetchone()
         return row
-
-
-
-
-
-
