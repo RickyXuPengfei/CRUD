@@ -2,7 +2,7 @@ MYSQL = {
     'host': 'xxx',
     'port': 3306,
     'user': 'xxx',
-    'password': 'xxxx'
+    'password': 'xxx'
 }
 
 CASSANDRA = {
